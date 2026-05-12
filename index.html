@@ -15,20 +15,19 @@
       background: black;
     }
 
-    /* FULLSCREEN GAME CANVAS */
-    #canvas {
+    canvas.game, #canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      display: block;
       border: 0;
-      outline: none;
+      display: block;
       background: black;
     }
 
-    /* REMOVE ANY AD SPACING ELEMENTS */
+    /* REMOVE TOP BAR COMPLETELY */
+    #internalLink,
     #display728x90,
     #display320x50 {
       display: none !important;
@@ -38,17 +37,24 @@
 
 <body>
 
-  <canvas id="canvas" tabindex="0"></canvas>
+  <canvas class="game" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
   <script>
     var Module = {
+      preRun: [],
+      postRun: [],
       canvas: document.getElementById('canvas'),
+
       print: function(text) {
         console.log(text);
       },
+
       printErr: function(text) {
         console.error(text);
-      }
+      },
+
+      setStatus: function() {},
+      monitorRunDependencies: function() {}
     };
 
     window.onerror = function(e) {
@@ -56,12 +62,12 @@
     };
   </script>
 
-  <!-- GAME SCRIPTS -->
+  <!-- KEEP ORIGINAL GAME ENGINE FILES -->
   <script src="poki-sdk.js"></script>
   <script src="poki-sdk-core-v2.263.0.js"></script>
   <script async src="moonbird.js"></script>
 
-  <!-- FIREBASE (unchanged, optional but kept) -->
+  <!-- FIREBASE (UNCHANGED) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
