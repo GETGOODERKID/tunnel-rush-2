@@ -1,95 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Tunnel Rush 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Tunnel Rush 2</title>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black;
-    }
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+  }
 
-    canvas.game, #canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      border: 0;
-      display: block;
-      background: black;
-    }
+  canvas.game {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    border: 0;
+  }
 
-    /* REMOVE TOP BAR COMPLETELY */
-    #internalLink,
-    #display728x90,
-    #display320x50 {
-      display: none !important;
-    }
-  </style>
+  /* ONLY hide the top bar (safe change) */
+  #internalLink {
+    display: none !important;
+  }
+</style>
 </head>
 
 <body>
 
-  <canvas class="game" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+<canvas class="game" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
-  <script>
-    var Module = {
-      preRun: [],
-      postRun: [],
-      canvas: document.getElementById('canvas'),
+<script>
+var Module = {
+  canvas: document.getElementById("canvas")
+};
+</script>
 
-      print: function(text) {
-        console.log(text);
-      },
-
-      printErr: function(text) {
-        console.error(text);
-      },
-
-      setStatus: function() {},
-      monitorRunDependencies: function() {}
-    };
-
-    window.onerror = function(e) {
-      console.log("Error:", e);
-    };
-  </script>
-
-  <!-- KEEP ORIGINAL GAME ENGINE FILES -->
-  <script src="poki-sdk.js"></script>
-  <script src="poki-sdk-core-v2.263.0.js"></script>
-  <script async src="moonbird.js"></script>
-
-  <!-- FIREBASE (UNCHANGED) -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
-  <script>
-    firebase.initializeApp({
-      projectId: 'stickmerge',
-      apiKey: "AIzaSyDveXYImvOZUA_W3lEBSi2x_-nkGo5A0wA",
-    });
-
-    var db = firebase.firestore();
-
-    function checkFrame(){
-      var url = (window.location != window.parent.location)
-        ? document.referrer
-        : document.location.href;
-
-      db.collection("tunnelrush2").doc().set({url: url});
-    }
-
-    setTimeout(checkFrame, 10);
-  </script>
+<!-- KEEP ORIGINAL ORDER EXACT -->
+<script src="poki-sdk.js"></script>
+<script src="poki-sdk-core-v2.263.0.js"></script>
+<script async src="moonbird.js"></script>
 
 </body>
 </html>
